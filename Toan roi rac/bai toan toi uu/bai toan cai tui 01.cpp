@@ -29,8 +29,8 @@ void timkiem(int i, double cur_val, double cur_kg, int P, int n, vector<dovat>& 
         return;
     }
     
-    // cận_trên_g = gtri_hiện_tại + rate_hàng_ngon_nhất * kl_còn_lại
-    double g = cur_val +  things[i].rate*(P - cur_kg);
+    // cận trên g= gtri hiện tại+rate hàng ngon nhất *kl còn lại
+    double g = cur_val + (P - cur_kg) * things[i].rate;
     
     //(g)<= kỷ lục-> Chặt
     if (g <= max_val) return; 
@@ -51,18 +51,14 @@ bool comparee(const dovat &a,const dovat &b){
     return a.rate > b.rate;
 }
 int main() {
-    cout<<"So loai do vat: "; int n; cin>>n;
-    cout<<"Trong luong tui: "; int P; cin>>P;
+     int n,P; cin>>n>>P;
+        //>>do_vat>>trong_luong
     vector<dovat>  things(n);
     results.assign(n, 0);
     vector<int> cur_path;
     
-    cout<<"Vector trong luong: ";
     for(int i=0;i<n;i++){
         cin>>things[i].kg;
-    }
-    cout<<"Vector gia tri su dung: ";
-    for(int i=0;i<n;i++){
         things[i].startPosition=i;
         cin>>things[i].value;
         things[i].rate =things[i].value/things[i].kg;
@@ -71,8 +67,7 @@ int main() {
     sort( things.begin(),things.end(),comparee);
     timkiem(0, 0, 0, P, n, things, cur_path);
 
-    cout<<fixed<<setprecision(1)<<"chi phi toi uu: "<<max_val<<endl;
-    cout<<"Phuong an toi uu: ";
+    cout<<fixed<<setprecision(0)<<max_val<<endl; //chi_phi_toi_ui
     for(int i=0;i<n;i++){
         cout<<results[i]<<" ";
     }

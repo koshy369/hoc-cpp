@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-void Sinh(vector<int> &s,int n, bool &isLast) {
+void Sinh(vector<long long> &s,int n, bool &isLast) {
     // Tìm vị trí 0 đầu tiên từ bên phải sang
     int i = n - 1;
     while (i >= 0 && s[i] == 1) {
@@ -16,45 +16,43 @@ void Sinh(vector<int> &s,int n, bool &isLast) {
 }
 
 int main() {
-    cout<<"So loai do vat: "; int n; cin>>n;
-    cout<<"Trong luong tui: "; int P; cin>>P;
-
-    cout<<"Vector trong luong: ";
-    vector<float> vp(n); // vector trong luong
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    //cout<<"So loai do vat: ";
+    long long n; cin>>n;
+    //cout<<"Trong luong tui: ";
+    long long P; cin>>P;
+    vector<long long> vp(n); // vector trong luong
+    vector<long long> value(n);
     for(int i=0;i<n;i++){
         cin>>vp[i];
-    }
-
-    cout<<"Vector gia tri su dung: ";
-    vector<float> value(n); //gtri
-    for(int i=0;i<n;i++){
         cin>>value[i];
     }
 
-    double money=0;
+    long long max_val=0;
     bool isLast = false;
-    vector<int>  save(n);
-    vector<int> s(n, 0);
+    vector<long long>  results(n);
+    vector<long long> s(n, 0);
 
     while(!isLast){
         
-        int p=0,m=0;
+        long long p=0,m=0;
         for(int i=0;i<n;i++){
             if(s[i]) {
                 p+=vp[i];
                 m+=value[i];
             }
         }
-        if(p<=P && m>money){
-            money=m;
-            save=s;
+        if(p<=P && m>max_val){
+            max_val=m;
+            results=s;
         }
         Sinh(s,n,isLast);
     }
-    cout<<fixed<<setprecision(1)<<"chi phi toi uu: "<<money<<endl;
-    cout<<"Phuong an toi uu: ";
+    cout<<max_val<<endl;
     for(int i=0;i<n;i++){
-        cout<<save[i]<<" ";
+        cout<<results[i]<<" ";
     }
     return 0;
 }
