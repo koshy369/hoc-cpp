@@ -45,7 +45,7 @@ int main() {
     // 2. Tìm người Unfollow
     int unfollowCount = 0;
     if (fOldData.is_open()) {
-        std::cout << "--- Nhung nguoi da huy theo doi ban (Unfollowed) ---" << std::endl;
+        std::cout << "----------- Link to unfollowers' accounts-----------" << std::endl;
         std::string line;
         while (std::getline(fOldData, line)) {
             trimRegistry(line);
@@ -56,12 +56,12 @@ int main() {
         }
         fOldData.close();
     }
-    std::cout << "Tong so nguoi da huy follow: " << unfollowCount << "\n" << std::endl;
+    std::cout << "Number of unfollowers: " << unfollowCount << "\n" << std::endl;
 
     // 3. Tìm người không follow lại
     int notFollowingBackCount = 0;
     if (fFollowing.is_open()) {
-        std::cout << "--- Nhung nguoi khong theo doi lai ban ---" << std::endl;
+        std::cout << "--- Non-followers ---" << std::endl;
         std::string line;
         while (std::getline(fFollowing, line)) {
             trimRegistry(line);
@@ -72,17 +72,17 @@ int main() {
         }
         fFollowing.close();
     }
-    std::cout << "So nguoi khong follow lai: " << notFollowingBackCount << "\n" << std::endl;
+    std::cout << "Number of non-followers: " << notFollowingBackCount << "\n" << std::endl;
 
     // 4. Cổng kiểm soát cập nhật dữ liệu
     char choice;
-    std::cout << "Ban co muon luu trang thai hien tai vao old_data.txt khong? (y/n): ";
+    std::cout << "Would you like to save changes to old_data.txt? (Y/N): \n\n\n\n\n\n";
     while (std::cin >> choice) {
         choice = std::tolower(choice); // Ép về chữ thường để triệt tiêu sai số do Caps Lock
         if (choice == 'y' || choice == 'n') {
             break; // Thoát vòng lặp nếu nhập chuẩn
         }
-        std::cout << "Cu phap khong hop le. Vui long chi nhap 'y' hoac 'n': ";
+        std::cout << "[ERROR] Invalid input. Please only type Y or N: ";
     }
 
     // 5. Rẽ nhánh thực thi
@@ -93,12 +93,12 @@ int main() {
                 fUpdateOld << user << "\n";
             }
             fUpdateOld.close();
-            std::cout << "[INFO] Da cap nhat thanh cong D:\\old_data.txt" << std::endl;
+            std::cout << "[INFO] The update was successful. D:\\old_data.txt. " << std::endl;
         } else {
-            std::cout << "[ERROR] Khong the mo file old_data.txt de ghi." << std::endl;
+            std::cout << "[ERROR] Cannot open file D:\\old_data.txt to write. " << std::endl;
         }
     } else {
-        std::cout << "[INFO] Da huy bo thao tac luu file." << std::endl;
+        std::cout << "[INFO] File save operation canceled." << std::endl;
     }
 
     return 0;
