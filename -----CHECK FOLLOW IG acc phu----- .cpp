@@ -24,11 +24,11 @@ void trimRegistry(std::string& s) {
 }
 
 int main() {
-    const std::string pathFollowers  = "D:\\CHECK FOLLOWER\\nguoi_theo_doi.txt",
-                    pathFollowing = "D:\\CHECK FOLLOWER\\dang_theo_doi.txt",
-                    pathOldData  = "D:\\CHECK FOLLOWER\\old_data.txt";
+    const std::string pathFollowers  = "D:\\CHECK FOLLOWER\\Followers.txt",
+                    pathFollowing = "D:\\CHECK FOLLOWER\\Following.txt",
+                    pathOldData  = "D:\\CHECK FOLLOWER\\OldData.txt";
 /*  
-    [FILE old_data.txt]: Nếu một Username tồn tại trong 'OldData.txt' (quá khứ có theo dõi) 
+    [FILE OldData.txt]: Nếu một Username tồn tại trong 'OldData.txt' (quá khứ có theo dõi) 
     nhưng KHÔNG tồn tại trong 'Followers.txt' (hiện tại đã biến mất) -> Xác định người đó đã Unfollow.
  */
     std::ifstream fFollowers(pathFollowers);
@@ -67,7 +67,7 @@ int main() {
     }
     std::cout << "Number of unfollowers: " << unfollowCount << "\n" << std::endl;
 
-    // 3. Tìm người không follow lại
+    // --------------------------Tìm người không follow lại------------------------
     int notFollowingBackCount = 0;
     if (fFollowing.is_open()) {
         std::cout << "--- Non-followers ---" << std::endl;
@@ -81,15 +81,14 @@ int main() {
         }
         fFollowing.close();
     }
-    std::cout << "Number of non-followers: " << notFollowingBackCount << "\n" << std::endl;
 
+    std::cout << "Number of non-followers: " << notFollowingBackCount << "\n" << std::endl;
     char choice;
     std::cout << "Would you like to save changes? (Y/N): ";
-
     while (std::cin >> choice) {
-        choice = std::tolower(choice); 
+        choice = std::tolower(choice);
         if (choice == 'y' || choice == 'n') {
-            break; 
+            break;
         }
         std::cout << "[ERROR] Invalid input. Please only type Y or N: ";
     }
@@ -109,6 +108,5 @@ int main() {
         std::cout << "[INFO] File save operation canceled." << std::endl;
     }
     std::cout<<" \n\n\n\n\n\n";
-
     return 0;
 }
