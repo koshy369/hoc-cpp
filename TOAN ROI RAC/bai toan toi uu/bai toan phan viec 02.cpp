@@ -35,10 +35,6 @@ bool Compare_ng(const Nguoi &a,const Nguoi &b){
 	// sắp xếp từ max đến min vì cho nó đạt lượng giá trị cần tìm nhanh hơn=> cái nhỏ bị loại sớm
 	// nếu xếp từ min=> max, cái nhỏ mới vào đã được chọn rồi =>cần cập nhật max_val nhiều hơn
 }
-bool Compare_cv(const CongViec &a,const CongViec &b){
-	return a.nang_suat > b.nang_suat;
-	// logic như so sanh nguoi
-}
 void in(){
 	cin>>n;
 	ng.resize(n);
@@ -59,10 +55,9 @@ void in(){
 	 			ng[i].max_ns = cviec.nang_suat;
 			}
 		}
-		sort(ng[i].cv.begin(), ng[i].cv.end(),Compare_cv);
 	}
 	sort(ng.begin(), ng.end(),Compare_ng);
-	if(n>0){
+	if(n>0){ 
 		// tiền xử lý tính biên g: lượng còn lại lớn nhất có thể lấy => chạy từ n-1 đến 0
 		sum_max[n-1]=ng[n-1].max_ns;
 		for(int i=n-2;i>=0 ; i--){
@@ -78,24 +73,23 @@ void Try(int i, int cur_val){
 
 			for (int j=0; j<n; j++){
 	 			results[ng[j].startPosition]=cur_path[j]+1;
-				// gán vị trí ban đầu là làm việc gì
 			}
 		}
 		return;
 	}
 	
-	double g=cur_val+sum_max[i];
+	double g=cur_val+sum_max[i];// gtri hiện tại + có thể lấy
 
-	if(g<=max_val) return; //chặt
+	if(g<=max_val) return; // chặt
 
 	for (int j=0; j<n; j++){
 		int v = ng[i].cv[j].viec;
 
-		if(!danh_dau[v]){
+		if(!danh_dau[v]){  // chưa thử
 			danh_dau[v]= 1;
 			cur_path.push_back(v);
 
-			Try(i+1,cur_val+ ng[i].cv[j].nang_suat);
+			Try(i+1,cur_val+ng[i].cv[j].nang_suat);
 
 			danh_dau[v]= false;
 			cur_path.pop_back();
