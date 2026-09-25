@@ -8,7 +8,7 @@ cau hinh cuoi: 1111
 
 bool sinh(vector<int>& a,int n){
     for(int i=n-1; i>=0;i--){
-        if (a[i]){ //a[i]=0;
+        if (a[i]){ //a[i]=1;
             a[i]=0;
             return 1;
         }

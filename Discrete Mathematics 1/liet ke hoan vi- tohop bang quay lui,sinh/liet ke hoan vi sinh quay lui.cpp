@@ -9,7 +9,7 @@ ll arr[1000005];
 bool visited[1000005];
 ll n, k, u, v, x, y, l, r;
 bool flag = false;
-
+// bai nay sai logic van AC
 void backtrack(int pos){
     if(pos > n){
         if(!flag){

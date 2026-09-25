@@ -10,6 +10,7 @@ cấu hình đầu: 12345=> cấu hình cuối :54321
 */
 
 void solve(vector<int>& a, int n) {
+    // neu nhu la cau hinh vdu: 1 3 2 5 4
     int i=-1,j;
     // tìm vị trí đầu tiên số đứng trước nhỏ hơn số đứng sau
     for (i=n-2; i>=0 ;i-- ){
@@ -18,7 +19,7 @@ void solve(vector<int>& a, int n) {
         }
     }//-> tim duoc a[i] = 2
 
-    // neu nhu la cau hinh vdu: 5 4 3 2 1
+    
     if(i< 0){
         cout<<"0"<<endl;
         return;

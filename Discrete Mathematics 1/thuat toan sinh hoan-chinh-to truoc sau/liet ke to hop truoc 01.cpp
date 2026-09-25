@@ -14,7 +14,7 @@ bool next_to_hop(vector<int>& a, int n, int k) {
     // Tiến trình duyệt ngược từ vị trí cuối cùng lên đầu
     for (int i = k - 1; i >= 0; --i) {
 
-        int min_val = (i > 0) ? a[i-1] + 1 : 1;
+        int min_val = (i > 0) ? a[i-1] + 1 : 1; //k the be hon cai truoc
         
         if (a[i] > min_val) {
             a[i]--;
